@@ -21,7 +21,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Buid Docker Image'
-                    docker build -t abhishekf5/cicd-e2e:${BUILD_NUMBER} .
+                    docker build -t anildevops23/cicd-e2e:${BUILD_NUMBER} .
                     '''
                 }
             }
@@ -29,12 +29,9 @@ pipeline {
 
         stage('Push the artifacts'){
            steps{
-                script{
-                    sh '''
-                    echo 'Push to Repo'
-                    docker push abhishekf5/cicd-e2e:${BUILD_NUMBER}
-                    '''
-                }
+                  withDockerRegistry(credentialsId: 'docker', url: 'https://hub.docker.com') {
+                     docker push anildevops23/cicd-e2e:${BUILD_NUMBER}
+                  }      
             }
         }
         
