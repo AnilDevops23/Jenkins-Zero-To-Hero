@@ -30,7 +30,7 @@ pipeline {
         stage('Push the artifacts'){
            steps{
                   withDockerRegistry(credentialsId: 'docker', url: 'https://hub.docker.com') {
-                     docker push anildevops23/cicd-e2e:${BUILD_NUMBER}
+                     docker push docker.io/anildevops23/cicd-e2e:${BUILD_NUMBER}
                   }      
             }
         }
