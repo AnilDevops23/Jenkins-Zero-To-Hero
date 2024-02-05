@@ -29,9 +29,12 @@ pipeline {
 
         stage('Push the artifacts'){
            steps{
-                  withDockerRegistry(credentialsId: 'docker', url: 'https://hub.docker.com') {
-                     docker push docker.io/anildevops23/cicd-e2e:${BUILD_NUMBER}
-                  }      
+               script {
+                   sh '''
+                     docker login -u anildevops23 -p abinitio@1234
+                     docker push anildevops23/cicd-e2e:${BUILD_NUMBER}
+                     '''
+               }     
             }
         }
         
