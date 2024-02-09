@@ -4,7 +4,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/anildevops23/Jenkins-Zero-To-Hero.git'
+        git branch: 'main', url: 'https://github.com/anildevops23/Jenkins-Zero-To-Hero.git'
       }
     }
     stage('Build and Test') {
@@ -38,6 +38,12 @@ pipeline {
                 dockerImage.push()
             }
         }
+      }
+    }
+    stage('gitops Checkout') {
+      steps {
+        sh 'echo passed'
+        git branch: 'main', url: 'https://github.com/AnilDevops23/gitops_EKS_manifest_files.git'
       }
     }
     stage('Update Deployment File') {
