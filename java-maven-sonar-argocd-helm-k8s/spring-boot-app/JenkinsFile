@@ -40,13 +40,6 @@ pipeline {
         }
       }
     }
-    stage('Gitops Checkout') {
-      steps {
-        sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/AnilDevops23/gitops_EKS_manifest_files.git'
-      }
-    }
-    
     stage('Update Deployment File') {
         environment {
             GIT_REPO_NAME = "gitops_EKS_manifest_files"
