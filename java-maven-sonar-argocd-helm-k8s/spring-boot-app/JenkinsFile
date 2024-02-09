@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    docker { image 'anildevops23/maven-docker-agent:v1' }
-  }
+  agent any
   stages {
     stage('Checkout') {
       steps {
