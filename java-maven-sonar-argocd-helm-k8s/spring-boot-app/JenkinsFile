@@ -40,6 +40,13 @@ pipeline {
         }
       }
     }
+    stage('Gitops Checkout') {
+      steps {
+        sh 'echo passed'
+        //git branch: 'main', url: 'https://github.com/AnilDevops23/gitops_EKS_manifest_files.git'
+      }
+    }
+    
     stage('Update Deployment File') {
         environment {
             GIT_REPO_NAME = "gitops_EKS_manifest_files"
@@ -51,8 +58,8 @@ pipeline {
                     git config user.email "anil@gmail.com"
                     git config user.name "Anil"
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" gitops_EKS_manifest_files/deployment.yml
-                    git add gitops_EKS_manifest_files/deployment.yml
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployment.yml
+                    git add deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                 '''
